@@ -142,3 +142,66 @@ the right instructions.
 
 This requires adding new hardware or improving the existing one.
 The designer has to trade-off between performance and cost, basing on the frequency of occurrence of structural hazards
+### Floating-point operations
+Floating point units perform more complex operations than integer ones.
+
+Therefore, in order to force them to perform their job in a single clock cycle, the designer should:
+- either use a very slow clock, or
+- make these units very complex.
+
+As a popular alternative, floating point units generally require more than one clock cycle to complete.
+
+The EX stage is composed of different functional units, and is repeated as many times, as the instruction requires.
+
+![[Pasted image 20231118172559.png|550]]
+
+Due to the different structure of the EX stage, hazards may become more frequent, especially structural hazards, which may occur for two reasons:
+- because of the unpipelined divide unit, several instructions could need it at the same time.
+- because the instructions have varying running times, the number of register writes required in a cycle can be larger than 1.
+
+
+#### The MIPS R4000 pipeline
+he MIPS R-4000 processor is a 64-bit microprocessor introduced in 1991, whose instruction set is similar to the MIPS64 one.
+
+The R4000 implements MIPS64 but uses a deeper pipeline than that of our five-stage design both for integer and FP programs. This deeper pipeline allows it to achieve higher clock rates by decomposing the five-stage integer pipeline into eight stages.
+
+The extra pipeline stages come from decomposing the memory access. Deeper kind of pipeline like this usually take the name of *superpipeline*.
+
+The stages are described in the following image:
+
+![[Pasted image 20231118180956.png|550]]
+
+The function of each stage is as follows:
+- IF: First half of instruction fetch; PC selection actually happens here, together with initiation of instruction cache access.
+- IS: Second half of instruction fetch, complete instruction cache access.
+- RF: Instruction decode and register fetch, hazard checking, and instruction cache hit detection.
+- EX: Execution, which includes effective address calculation, ALU operation, and branch-target computation and condition evaluation.
+- DF: Data fetch, first half of data cache access.
+- DS: Second half of data fetch, completion of data cache access.
+- TC: Tag check, to determine whether the data cache access hit.
+- WB: Write-back for loads and register-register operations.
+
+> In addition to substantially increasing the amount of forwarding required, this longer-latency pipeline increases both the load and branch delays.
+
+The MIPS architecture has a single-cycle delayed branch. 
+The R4000 uses a predicted-not-taken strategy for the remaining two cycles of the branch delay. Not-taken branches are simply one-cycle delayed branches, while taken branches have a one-cycle delay slot followed by two idle cycles.
+##### The floating-Point pipeline
+The R4000 floating-point unit consists of three functional units: 
+- a floating-point divider
+- a floating-point multiplier
+- a floating-point adder.
+
+> Double-precision FP operations can take from 2 cycles (for a negate) up to 112 cycles (for a square root).
+
+The Floating point eight stages are described in the following table:
+
+Stage |Functional unit|Description
+--|--|--
+A|FP adder|Mantissa add stage
+D|FP divider|Divide pipeline stage
+E|FP multiplier|Exception test stage
+M|FP multiplier|First stage of multiplier
+N|FP multiplier|Second stage of multiplier
+R|FP adder|Rounding stage
+S|FP adder|Operand shift stage
+U| |Unpack FP number
