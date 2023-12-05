@@ -44,8 +44,7 @@ There are two different convention for ordering the bytes within a larger object
 A second memory issue is that in many computers, accesses to objects larger than a byte **must be aligned**.
 
 We can store in memory large objects, an the access to those must be aligned: an access of $s$ bytes at a byte address $A$ is aligned if $A\mod s =0$.
-
-![[Pasted image 20231005150239.png|600]]b
+![[Pasted image 20231005150239.png|600]]
 
 > Misalignment causes hardware complications, because the memory is typically aligned on a multiple of a word or double-word boundary.
 >
