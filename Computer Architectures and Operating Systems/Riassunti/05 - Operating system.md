@@ -10,5 +10,9 @@ A  basic software is thus composed of
 	- **Hw-specific services**, which implements CPU-specific operations, for example context switches
 - **System-call interface**, which is an application programming interface to access the services provided by the rest of the basic software
 
+The stack that has just been described is represented in the following picture
+
 ![[Pasted image 20231212140717.png]]
 ## Operating system architecture
+Throughout the yeas, different kind of operative system architectures have been proposed. generally, there's no clear better one, but the suitability only depends on the use case of the system.
+### Flat architecture
