@@ -1,10 +1,16 @@
 **Micro-Controller Operating Systems** (**MicroC/OS**, stylized as **μC/OS**, or **Micrium OS**) is a real-time operating system (RTOS) that is based on a flat architecture and written in ANSI C. It is a royalty-free RTOS that is licensed on a per-end-product basis. 
 Micrium µC/OS is preemptive and deterministic, making it ideal for use in safety-critical systems. 
 It has a large user base and is used in hundreds of products all over the world, also thanks to its extensive documentation and support.
+
+> The teacher literally copy-pasted chunks of the book.
+> The manual for micro-c/os can be found [here](https://www.analog.com/media/en/dsp-documentation/software-manuals/Micrium-uCOS-III-UsersManual.pdf)
 ## Code structure
 The code structure of a MicroC program is divided into different portions:
-- **Application code:** This section contains the application logic, which is the code that implements the specific functionality of the microcontroller system.
-- **Board Support Package (BSP):** This section contains the code that is specific to the hardware platform that the MCU is running on. The BSP provides APIs for accessing and controlling the MCU's hardware resources, such as GPIO pins, timers, and peripherals.
+- **Application code:** The application code consists of project or product files. For convenience, these are simply called `APP.C` and `APP.H`, however an application can contain any number of files that do not have to be called APP.\*. 
+	- The application code is typically where one would find the main function.
+- **CPU**: Semiconductor manufacturers often provide library functions in source form for accessing the peripherals on their CPU or MCU. These libraries are quite useful and often save valuable time.
+	- Since there is no naming convention for these files, \*.C and \*.H are assumed
+- **Board Support Package (BSP):**  is code that is typically written to interface to peripherals on a target board. For example such code can turn on and off Light Emitting Diodes (LEDs), turn on and off relays, or code to read switches, temperature sensors, and more.
 - **µC/OS-III:** This section contains part of the µC/OS-III real-time operating system (RTOS), in particular the processor independent portion. This provides a number of services that are essential for developing real-time embedded systems, such as task scheduling, memory management, and device management.
 - **µC/OS-III/CPU**: This section contains the other part of the RTOS, in particular the CPU dependent code. This provides some essential services, such as the code for saving/restoring process context, or enable and disable interrupts.
 - **µC/LIB**: a set of C library functions that are specifically designed for microcontrollers. These functions provide a variety of commonly used operations, such as memory copy, string manipulation, and ASCII conversion
