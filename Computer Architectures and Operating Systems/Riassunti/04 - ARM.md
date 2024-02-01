@@ -108,4 +108,3 @@ To handle I/O operation in interrupt mode, the system has to some work to handle
 - it configures the **interrupt controller**, to enable each interrupt sources an set their priority to handle simultaneous interrupt signals.
 
 Every time a interrupt routine is called, during or after the handle event, the CPU has also to **clear the flags** that indicate the interrupt is active. This can be done in different parts of the interrupt service routine, which may be relevant for nesting interrupts.
-## Clocking

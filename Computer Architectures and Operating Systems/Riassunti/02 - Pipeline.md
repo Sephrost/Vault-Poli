@@ -2,7 +2,6 @@
 It allows to take advantage of parallelism that exists among the actions needed to execute an instruction.
 
 In a pipeline, different units (called **pipe stages** or **segments**) are completing different parts of different instructions in parallel. Thus, those stages are connected together to form a pipe.
-
 ### Throughput of a pipeline
 The throughput of a pipelined processor is the **number** of **instructions** which exit the pipeline(completed) in the **time unit**.
 
@@ -39,7 +38,7 @@ Hazards in pipelines can make it necessary to stall the pipeline, which isn't id
 
 As such, a stall causes the introduction of a *bubble* in the pipeline.
 ##### Data Hazards
-Data hazards occur when the pipeline changes the order of read/write accesses to operands so that the order differs from the order seen by sequentially executing instructions on an unpipelined processor. This can induce wrong results and nondeterministic behaviors.
+Data hazards occur when the pipeline changes the order of read/write accesses to operands so that the order differs from the order seen by sequentially executing instructions on an unpipelined processor. This can induce wrong results and nondeterministic behaviours.
 
 There are three kind of data hazards:
 - **Read After Write**: a read operation occurs before a write one in program order. Is the most common data hazard.
