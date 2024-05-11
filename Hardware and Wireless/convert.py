@@ -1,7 +1,7 @@
 import os
 
-folder_path = "wireless/converted/Slide 04/"
-markdown_file = "wireless/04.md"
+folder_path = "hardware/converted/Slide 06/"
+markdown_file = "hardware/06.md"
 
 with open(markdown_file, "w") as md:
     for filename in sorted(os.listdir(folder_path)):
